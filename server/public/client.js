@@ -16,7 +16,7 @@ function getRestaurant() {
         $('#tableId').empty();
         response.forEach((restaurant) => {
             $('#tableId').append(`
-                
+          
                 <tr>
                     <td>${restaurant.name} </td>
                     <td>${restaurant.type}</td>
