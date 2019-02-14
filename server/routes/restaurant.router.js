@@ -31,13 +31,13 @@ router.post('/', (req, res) => {
 
 
 router.delete('/:id', (req, res) => {
-    console.log('/restaurant POST route was hit');
+    console.log('/restaurant DELETE request was hit');
     console.log('req.params', req.params);
-    pool.query(`DELETE FROM restaurant WHERE id = $1;`, [req.params.id])
+    pool.query(`DELETE FROM "restaurant" WHERE "id"=$1;`, [req.params.id])
         .then(() => {
             res.sendStatus(204);
-        }).catch((error) => {
-            console.log('error with restaurant delete', error);
+        }).catch(error => {
+            console.log('there was an error on the restaurant delete query', error);
             res.sendStatus(500);
         });
 });

@@ -42,20 +42,24 @@ function addRestaurant() {
         }
     }).then(function () {
         getRestaurant();
+        clear();
     });
 }
 
 
-function deleteButton(){
+function deleteButton() {
+    console.log('delete was clicked');
     console.log($(this).data().id);
-    // $.ajax({
-    //     method: 'DELETE',
-    //     url: '/restaurant' + $(this).data().id,
+    const restaurantId = $(this).data().id;
+    $.ajax({
+        method: 'DELETE',
+        url: '/restaurant/' + restaurantId
+    }).then(function () {
+        getRestaurant();
+    })
+}
 
-    // }).then(function () {
-    //     getRestaurant();
-    // });
-
-
-
+function clear(){
+    $('#name').val('');
+    $('#type').val('');
 }
