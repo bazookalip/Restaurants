@@ -21,9 +21,10 @@ function getRestaurant() {
                 <tr>
                     <td>${restaurant.name} </td>
                     <td>${restaurant.type}</td>
-                    <td>${restaurant.rating}</td>
-                    <td><button class="deleteButton" data-id="${restaurant.id}">Delete</button></td>
+                    <td> <input value = "${restaurant.rating}"/></td>
                     <td><button class="saveButton" data-id="${restaurant.id}">Save</button></td>
+                    <td><button class="deleteButton" data-id="${restaurant.id}">Delete</button></td>
+                  
                 </tr>        
         `)
         });
@@ -72,10 +73,15 @@ function clear(){
 function saveButton() {
     console.log('save was clicked');
     console.log($(this).data().id);
+    console.log($(this).parent().prev().children().val());
+    
     const restaurantId = $(this).data().id;
     $.ajax({
         method: 'PUT',
-        url: '/restaurant/' + restaurantId
+        url: '/restaurant/' + restaurantId,
+        data: {
+            rating: $(this).parent().prev().children().val(),
+        }
     }).then(function () {
         getRestaurant();
     })
