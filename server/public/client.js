@@ -4,6 +4,7 @@ $(document).ready(onReady);
 function onReady(){
     $('#submit').on('click', addRestaurant);
     $('#tableId').on('click', '.deleteButton', deleteButton);
+    $('#tableId').on('click', '.saveButton', saveButton);
     getRestaurant();
 };
 
@@ -20,7 +21,9 @@ function getRestaurant() {
                 <tr>
                     <td>${restaurant.name} </td>
                     <td>${restaurant.type}</td>
+                    <td>${restaurant.rating}</td>
                     <td><button class="deleteButton" data-id="${restaurant.id}">Delete</button></td>
+                    <td><button class="saveButton" data-id="${restaurant.id}">Save</button></td>
                 </tr>        
         `)
         });
@@ -31,7 +34,9 @@ function addRestaurant() {
     console.log('yay!')
     let name = $('#name').val();
     let type = $('#type').val();
-    console.log(name, type);
+    let rating = $('#rating').val();
+
+    console.log(name, type, rating);
     
     $.ajax({
         method: 'POST',
@@ -39,13 +44,13 @@ function addRestaurant() {
         data: {
             name: name,
             type: type,
+            rating: rating
         }
     }).then(function () {
         getRestaurant();
         clear();
     });
 }
-
 
 function deleteButton() {
     console.log('delete was clicked');
@@ -62,4 +67,16 @@ function deleteButton() {
 function clear(){
     $('#name').val('');
     $('#type').val('');
+}
+
+function saveButton() {
+    console.log('save was clicked');
+    console.log($(this).data().id);
+    const restaurantId = $(this).data().id;
+    $.ajax({
+        method: 'PUT',
+        url: '/restaurant/' + restaurantId
+    }).then(function () {
+        getRestaurant();
+    })
 }
