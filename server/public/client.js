@@ -20,7 +20,7 @@ function getRestaurant() {
                 <tr>
                     <td>${restaurant.name} </td>
                     <td>${restaurant.type}</td>
-                    <td><button class="deleteButton">delete</button></td>
+                    <td><button class="deleteButton" data-id="${restaurant.id}">Delete</button></td>
                 </tr>        
         `)
         });
@@ -47,8 +47,15 @@ function addRestaurant() {
 
 
 function deleteButton(){
-    console.log('delete!');
-    $(this).closest('tr').fadeOut(500);
+    console.log($(this).data().id);
+    // $.ajax({
+    //     method: 'DELETE',
+    //     url: '/restaurant' + $(this).data().id,
+
+    // }).then(function () {
+    //     getRestaurant();
+    // });
+
 
 
 }
