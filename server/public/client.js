@@ -21,7 +21,7 @@ function getRestaurant() {
                 <tr>
                     <td>${restaurant.name} </td>
                     <td>${restaurant.type}</td>
-                    <td> <input value = "${restaurant.rating}"/></td>
+                    <td> <input class="rating" value = "${restaurant.rating}"/></td>
                     <td><button class="saveButton" data-id="${restaurant.id}">Save</button></td>
                     <td><button class="deleteButton" data-id="${restaurant.id}">Delete</button></td>
                   
