@@ -6,7 +6,8 @@ const app = express();
 
 app.use(express.static('server/public'));
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

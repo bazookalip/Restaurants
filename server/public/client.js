@@ -76,6 +76,7 @@ function saveButton() {
     console.log($(this).parent().prev().children().val());
     
     const restaurantId = $(this).data().id;
+    
     $.ajax({
         method: 'PUT',
         url: '/restaurant/' + restaurantId,
